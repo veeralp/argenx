@@ -5,9 +5,9 @@
         $SftpServer = "use1.sftp.shrd.staging.zsservices.com"
         $password = "/rmJvGaG5PW6Y+YwdGHhaPE7lyRPfP5S/dLMkyi6" | ConvertTo-SecureString -AsPlainText -Force
         $cred = New-Object System.Management.Automation.PSCredential ('AKIAQWWF3ZY2PSQCFQS6', $password)
-        $localdir = "C:\CVS_SFTP\CVS"
+        $localdir = "\\infucareapp4\Argenx\sftp"
         $sftpSourcePath = "/aws-a0100-use1-00-d-s3b-mvns-poc-data01/Infucare/"
-        $lastDownloadTimestamp = Get-Content "C:\CVS_SFTP\CVS_Backup\LastDownloadTimestamp.txt" | Out-String -ErrorAction SilentlyContinue
+        $lastDownloadTimestamp = Get-Content "\\infucareapp4\Argenx\LastDownloadTimestamp.txt" | Out-String -ErrorAction SilentlyContinue
 
         # establish new SFTP sessin
         $sftpSession = New-SFTPSession -ComputerName $SftpServer -Credential $cred -AcceptKey -Port 22 -Force
@@ -30,7 +30,7 @@
         }
 
         # Update the last successful download timestamp
-        Set-Content "C:\CVS_SFTP\CVS_Backup\LastDownloadTimestamp.txt" (Get-Date).ToString()
+        Set-Content "\\infucareapp4\Argenx\LastDownloadTimestamp.txt" (Get-Date).ToString()
         
 
         # Close the SFTP session when done
